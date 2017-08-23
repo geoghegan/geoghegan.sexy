@@ -10,8 +10,8 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            find .
-            docker build -t ${DOCKER_USERNAME}/${CIRCLE_PROJECT_REPONAME} .
+            ls *
+            #docker build -t ${DOCKER_USERNAME}/${CIRCLE_PROJECT_REPONAME} .
       - run:
           name: Save Docker image layer cache
           command: |
