@@ -7,20 +7,10 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - restore_cache:
-          keys:
-            - v1-{{ .Branch }}
-          paths:
-            - /caches/${CIRCLE_PROJECT_REPONAME}.tar
-      - run:
-          name: Load Docker image layer cache
-          command: |
-            set +o pipefail
-            docker load -i /caches/${CIRCLE_PROJECT_REPONAME}.tar | true
       - run:
           name: Build application Docker image
           command: |
-            docker build --cache-from=${CIRCLE_PROJECT_REPONAME} -t ${CIRCLE_PROJECT_REPONAME} .
+            docker build --cache-from=${CIRCLE_PROJECT_REPONAME} -t ${DOCKER_USERNAME}/${CIRCLE_PROJECT_REPONAME} .
       - run:
           name: Save Docker image layer cache
           command: |
