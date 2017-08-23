@@ -15,7 +15,7 @@ jobs:
           name: Push application Docker image
           command: |
             docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
-            docker tag ${DOCKERUSERNAME}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1} ${DOCKERUSERNAME}/${CIRCLE_PROJECT_REPONAME}:latest
+            docker tag ${DOCKERUSERNAME}/${CIRCLE_PROJECT_REPONAME}:latest ${DOCKERUSERNAME}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1} 
             docker tag ${DOCKERUSERNAME}/${CIRCLE_PROJECT_REPONAME}:latest ${DOCKERUSERNAME}/${CIRCLE_PROJECT_REPONAME}:latest
             docker push ${DOCKERUSERNAME}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}
             docker push ${DOCKERUSERNAME}/${CIRCLE_PROJECT_REPONAME}:latest
