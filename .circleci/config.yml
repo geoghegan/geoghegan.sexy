@@ -10,17 +10,8 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
+            find .
             docker build -t ${DOCKER_USERNAME}/${CIRCLE_PROJECT_REPONAME} .
-      - run:
-          name: Save Docker image layer cache
-          command: |
-            mkdir -p /caches
-            docker save -o /caches/${CIRCLE_PROJECT_REPONAME}.tar ${CIRCLE_PROJECT_REPONAME}
-      - save_cache:
-          key: v1-{{ .Branch }}-{{ epoch }}
-          paths:
-            - /caches/${CIRCLE_PROJECT_REPONAME}.tar
-      - deploy:
           name: Push application Docker image
           command: |
             docker login ${DOCKER_USERNAME} ${DOCKER_PASSWORD}
